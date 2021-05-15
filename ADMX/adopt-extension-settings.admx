@@ -17,3 +17,49 @@
 "tenantUuid"="de95ae2b-62e2-11ea-831c-0a7797abac80"
 "userPoolId"="us-east-1_bBI7fpUl7"
 
+?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.1" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windows" namespace="MyCompany.Policies.Common" />    
+  </policyNamespaces> 
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="CtMyCompany" displayName="$(string.CtCategoryMyCompany)" />
+  </categories>
+</policyDefinitions>
+
+
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+ 
+<policyNamespaces>
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+</policyNamespaces>
+ 
+<resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="CtAdoptBrowserExtensionConfig" displayName="$(string.CtAdoptBrowserExtensionConfig)">
+<parentCategory ref="mycompany:CtMyCompany" />
+</category>
+  </categories>
+
+
+
+<policy name="AdoptBrowserExtensionConfig" class="Machine" displayName="$(string.AdoptBrowserExtension)" explainText="$(string.AdoptBrowserExtension_Help)" presentation="$(presentation.AdoptBrowserExtension)" key="Software\Policies\AppLearn\Adopt\Extension">
+      <parentCategory ref="CtAppLearnAdoptCompanySettings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="AdoptBrowserExtensionRegion" valueName="us-east-1">
+          <item displayName="$(string.Region_US-Region)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.Region_EU-Region)">
+            <value>
+              <decimal value="32" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
